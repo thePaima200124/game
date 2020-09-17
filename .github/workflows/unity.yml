@@ -37,6 +37,8 @@ jobs:
         with:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
+          buildsPath: build
+          buildName: game-${{ matrix.targetPlatform }}
           customParameters: '-nographics'
 
       - uses: actions/upload-artifact@v2
