@@ -103,7 +103,9 @@ jobs:
           key: Library
 
       - name: Deactivate compression on WebGl
-        run: sed -i "s/\(webGLCompressionFormat:\) 1/\1 2/" ProjectSettings/ProjectSettings.asset
+        run: |
+          sed -i "s/\(webGLCompressionFormat:\) 1/\1 2/" ProjectSettings/ProjectSettings.asset
+          git commit --ammend --no-edit
 
       - name: Build project
         uses: webbertakken/unity-builder@v1.2
