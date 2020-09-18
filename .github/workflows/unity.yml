@@ -74,6 +74,12 @@ jobs:
           $build_option "$build_path"
           -logFile /dev/stderr
 
+      - name: Remove debug things
+        working-directory: build
+        run: rm -rf
+          *_BackUpThisFolder_ButDontShipItWithYourGame
+          *.debug
+
       - uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.target }}
