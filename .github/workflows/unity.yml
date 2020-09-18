@@ -6,6 +6,9 @@ on:
   push:
     branches: ['*']
 
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,8 +41,6 @@ jobs:
             Library-
 
       - name: License
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         run: echo "$UNITY_LICENSE" | tr -d '\r' > license.ulf
 
       - name: Activation
