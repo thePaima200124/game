@@ -84,32 +84,3 @@ jobs:
         with:
           name: Build-${{ matrix.target }}
           path: build
-
-  build2:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version:
-          - 2020.1.6f1
-        target:
-          - WebGL
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/cache@v2
-        with:
-          path: Library-${{ matrix.target }}
-          key: Library
-
-      - name: Build project
-        uses: webbertakken/unity-builder@v1.2
-        with:
-          unityVersion: ${{ matrix.version }}
-          targetPlatform: ${{ matrix.target }}
-
-      # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build-${{ matrix.target }}
-          path: build
