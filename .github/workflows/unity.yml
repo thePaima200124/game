@@ -63,7 +63,7 @@ jobs:
           -quit
           -buildTarget Linux64
           -projectPath "../"
-          -buildLinux64Player "game"
+          -buildLinux64Player "$PWD/game"
           -logFile /dev/stderr
 
       - uses: actions/upload-artifact@v2
