@@ -59,7 +59,7 @@ jobs:
           -quit
           -buildTarget Linux64
           -projectPath "$PWD"
-          -customBuildPath "$PWD/build"
+          -buildLinux64Player "$PWD/build"
           -logFile /dev/stderr
 
       - uses: actions/upload-artifact@v2
