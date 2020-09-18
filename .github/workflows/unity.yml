@@ -20,8 +20,8 @@ jobs:
     steps:
       - name: Update git
         run: |
-          apt-get update
-          apt-get upgrade
+          apt-get -y update
+          apt-get -y upgrade
 
       - uses: actions/checkout@v2
         with:
