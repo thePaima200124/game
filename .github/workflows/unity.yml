@@ -51,15 +51,19 @@ jobs:
           -manualLicenseFile license.ulf
           || true
 
+      - name: Build dir
+        run: mkdir -p build
+
       - name: Build
+        working-directory: build
         run: xvfb-run --auto-servernum --server-args="-screen 0 640x480x24"
           /opt/Unity/Editor/Unity
           -batchmode
           -nographics
           -quit
           -buildTarget Linux64
-          -projectPath "$PWD"
-          -buildLinux64Player "$PWD/build"
+          -projectPath "../"
+          -buildLinux64Player "game"
           -logFile /dev/stderr
 
       - uses: actions/upload-artifact@v2
