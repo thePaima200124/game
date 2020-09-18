@@ -25,7 +25,7 @@ jobs:
           add-apt-repository ppa:git-core/ppa
           apt-get -y update
           apt-get -y upgrade
-          apt-get -y install git xvfb
+          apt-get -y install git xvfb curl
 
       - uses: actions/checkout@v2
 
@@ -50,6 +50,10 @@ jobs:
           -quit
           -manualLicenseFile license.ulf
           || true
+
+      - name: BuildCommand
+        working-directory: Assets
+        run: curl -O https://gist.githubusercontent.com/elmernocon/35426d24cd546bf69235f403a3c36b6c/raw/5e45b1e023b50292c343195a32273e1cc6f5a98e/BuildCommand.cs
 
       - name: Build
         run: xvfb-run --auto-servernum --server-args="-screen 0 640x480x24"
