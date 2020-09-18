@@ -3,8 +3,8 @@
 declare -A build_path_options
 declare -A build_targets
 
-build_path_option[linux-il2cpp]='-buildLinux64Player "$PWD/game"'
-build_path_option[windows]='-buildWindows64Player "$PWD/game.exe"'
+build_path_option[linux-il2cpp]='-buildLinux64Player "./game"'
+build_path_option[windows]='-buildWindows64Player "./game.exe"'
 
 build_targets[linux-il2cpp]='Linux64'
 build_targets[windows]='Win64'
