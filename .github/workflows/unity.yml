@@ -17,6 +17,7 @@ jobs:
           - 2020.1.6f1
         target:
           - linux-il2cpp
+          - windows
     steps:
       - name: Update git and xvfb
         run: |
@@ -65,7 +66,7 @@ jobs:
           -quit
           -buildTarget $build_target
           -projectPath "../"
-          $build_path_option
+          $build_option "$build_path"
           -logFile /dev/stderr
 
       - uses: actions/upload-artifact@v2
