@@ -58,6 +58,7 @@ jobs:
 
       - name: Use mono in windows
         run: sed -i "s/\(Standalone:\) 1/\1 0/" ProjectSettings/ProjectSettings.asset
+        if: ${{ matrix.target }} == windows
 
       - name: Build
         working-directory: build
