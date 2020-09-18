@@ -28,8 +28,6 @@ jobs:
           apt-get -y install git
 
       - uses: actions/checkout@v2
-        with:
-          lfs: true
 
       - uses: actions/cache@v1.1.0
         with:
