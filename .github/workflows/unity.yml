@@ -17,7 +17,6 @@ jobs:
           - 2020.1.6f1
         target:
           - linux-il2cpp
-          - windows
     steps:
       - name: Update git and xvfb
         run: |
