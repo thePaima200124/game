@@ -18,14 +18,14 @@ jobs:
         target:
           - linux-il2cpp
     steps:
-      - name: Update git
+      - name: Update git and xvfb
         run: |
           apt-get -y update
           apt-get -y install software-properties-common
           add-apt-repository ppa:git-core/ppa
           apt-get -y update
           apt-get -y upgrade
-          apt-get -y install git
+          apt-get -y install git xvfb
 
       - uses: actions/checkout@v2
 
@@ -36,11 +36,26 @@ jobs:
           restore-keys: |
             Library-
 
-      - name: Build
+      - name: License
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        run: /opt/Unity/Editor/Unity
+        run: echo "$UNITY_LICENSE" | tr -d '\r' > license.ulf
+
+      - name: Activation
+        run: xvfb-run --auto-servernum --server-args="-screen 0 640x480x24"
+          /opt/Unity/Editor/Unity
           -batchmode
+          -nographics
+          -logFile /dev/stderr
+          -quit
+          -manualLicenseFile license.ulf
+
+      - name: Build
+        run: xvfb-run --auto-servernum --server-args="-screen 0 640x480x24"
+          /opt/Unity/Editor/Unity
+          -batchmode
+          -nographics
+          -quit
           -projectPath "$PWD"
           -buildTarget StandaloneLinux64
           -customBuildTarget StandaloneLinux64
