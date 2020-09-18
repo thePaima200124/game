@@ -40,14 +40,14 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         run: /opt/Unity/Editor/Unity
-          -projectPath "$PWD"
-          -quit
           -batchmode
+          -projectPath "$PWD"
           -buildTarget StandaloneLinux64
           -customBuildTarget StandaloneLinux64
           -customBuildName game
           -customBuildPath "$PWD/build"
           -executeMethod BuildCommand.PerformBuild
+          -logFile /dev/stderr
 
       - uses: actions/upload-artifact@v2
         with:
