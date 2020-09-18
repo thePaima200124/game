@@ -57,9 +57,8 @@ jobs:
           -batchmode
           -nographics
           -quit
+          -buildTarget Linux64
           -projectPath "$PWD"
-          -buildTarget StandaloneLinux64
-          -customBuildName game
           -customBuildPath "$PWD/build"
           -logFile /dev/stderr
 
