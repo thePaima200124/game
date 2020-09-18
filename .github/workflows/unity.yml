@@ -18,6 +18,7 @@ jobs:
         target:
           - linux-il2cpp
           - webgl
+          - windows
     steps:
       - name: Update git and xvfb
         run: |
@@ -55,6 +56,9 @@ jobs:
       - name: Build dir
         run: mkdir -p build
 
+      - name: Use mono in windows
+        run: sed -i "s/\(Standalone:\) 1/\1 0/" ProjectSettings/ProjectSettings.asset
+
       - name: Build
         working-directory: build
         shell: bash
@@ -72,4 +76,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: build
+          path: build-${{ matrix.target }}
