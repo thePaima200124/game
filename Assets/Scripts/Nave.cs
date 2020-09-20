@@ -33,7 +33,7 @@ public class Nave : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         Vector2 dir = new Vector2(x, y);
-       
+
         if (rb.transform.position.x > screenBounds.x - 0.5)
         {
             rb.transform.position = new Vector3(screenBounds.x - 0.5f, rb.transform.position.y, rb.transform.position.z);
