@@ -99,8 +99,10 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: Library-${{ matrix.target }}
-          key: Library
+          path: Library
+          key: Library-${{ matrix.target }}
+          restore-keys: |
+            Library-
 
       - name: Deactivate compression on WebGl
         run: |
