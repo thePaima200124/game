@@ -82,9 +82,22 @@ jobs:
           *.debug
 
       - uses: actions/upload-artifact@v2
+        if: matrix.target != 'linux-il2cpp'
         with:
           name: Build-${{ matrix.target }}
           path: build
+
+      - name: Make tarball
+        if: matrix.target == 'linux-il2cpp'
+        run: |
+          mv build game
+          tar czvf game.tar.gz game
+
+      - uses: actions/upload-artifact@v2
+        if: matrix.target == 'linux-il2cpp'
+        with:
+          name: Build-${{ matrix.target }}
+          path: game.tar.gz
 
   build2:
     runs-on: ubuntu-latest
