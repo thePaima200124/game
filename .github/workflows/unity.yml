@@ -8,6 +8,7 @@ on:
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  IL2CPP_ADDITIONAL_ARGS: '--compiler-flags="-D_FORTIFY_SOURCE=2 -flto -O2" --linker-flags="-flto -Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now" --verbose'
 
 jobs:
   build:
