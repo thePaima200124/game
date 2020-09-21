@@ -121,14 +121,11 @@ jobs:
       - name: Deactivate compression on WebGl
         run: |
           sed -i "s/\(webGLCompressionFormat:\) 1/\1 2/" ProjectSettings/ProjectSettings.asset
-          git config --global user.name "someone"
-          git config --global user.email "no@no.no"
-          git add -u
-          git commit --amend --no-edit
 
       - name: Build project
         uses: webbertakken/unity-builder@v1.2
         with:
+          allowDirtyBuild: true
           unityVersion: ${{ matrix.version }}
           targetPlatform: ${{ matrix.target }}
 
