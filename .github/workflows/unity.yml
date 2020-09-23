@@ -124,12 +124,12 @@ jobs:
 
       - name: yq
         run: |
-          sudo apt-get -y update
-          sudo apt-get -y install software-properties-common
-          sudo add-apt-repository ppa:rmescandon/yq
-          sudo apt-get -y update
-          sudo apt-get -y upgrade
-          sudo apt-get -y install yq moreutils
+          apt-get -y update
+          apt-get -y install software-properties-common
+          add-apt-repository ppa:rmescandon/yq
+          apt-get -y update
+          apt-get -y upgrade
+          apt-get -y install yq moreutils
 
       - name: Deactivate compression on WebGl
         working-directory: ProjectSettings
