@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public string result;
     public int points;
     //public float size;
-    public Color color;
+    public Color color; // https://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html
 
     // Start is called before the first frame update
     void Start()
