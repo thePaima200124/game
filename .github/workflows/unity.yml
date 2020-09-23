@@ -28,10 +28,9 @@ jobs:
           apt-get -y update
           apt-get -y install software-properties-common
           add-apt-repository ppa:git-core/ppa
-          add-apt-repository ppa:rmescandon/yq
           apt-get -y update
           apt-get -y upgrade
-          apt-get -y install git xvfb curl yq moreutils
+          apt-get -y install git xvfb curl
 
       - uses: actions/checkout@v2
 
@@ -59,10 +58,7 @@ jobs:
         run: mkdir -p build
 
       - name: Use mono in windows
-        working-directory: ProjectSettings
-        run:
-          yq ".PlayerSettings.scriptingBackend.Standalone = 0" ProjectSettings.asset |
-          sponge ProjectSettings.asset
+        run: sed -i "s/\(Standalone:\) 1/\1 0/" ProjectSettings/ProjectSettings.asset
         if: matrix.target == 'windows'
 
       - name: Build
@@ -122,20 +118,9 @@ jobs:
           restore-keys: |
             Library-
 
-      - name: yq
-        run: |
-          apt-get -y update
-          apt-get -y install software-properties-common
-          add-apt-repository ppa:rmescandon/yq
-          apt-get -y update
-          apt-get -y upgrade
-          apt-get -y install yq moreutils
-
       - name: Deactivate compression on WebGl
-        working-directory: ProjectSettings
-        run:
-          yq '.PlayerSettings.webGLCompressionFormat = 2' ProjectSettings.asset |
-          sponge ProjectSettings.asset
+        run: |
+          sed -i "s/\(webGLCompressionFormat:\) 1/\1 2/" ProjectSettings/ProjectSettings.asset
 
       - name: Build project
         uses: webbertakken/unity-builder@v1.2
